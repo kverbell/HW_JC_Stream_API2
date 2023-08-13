@@ -31,11 +31,10 @@ public class Main {
 
         List<Person> potentialWorkersList = persons.stream()
                 .filter(value -> value.getEducation() == Education.HIGHER)
-                .filter(value -> (value.getSex() == Sex.WOMAN && value.getAge() > 18 && value.getAge() < 60) ||
-                        (value.getSex() == Sex.MAN && value.getAge() > 18 && value.getAge() < 65))
+                .filter(value -> value.getAge() > 18)
+                .filter(value -> (value.getSex() == Sex.WOMAN ? value.getAge() < 60 : value.getAge() < 65))
                 .sorted(Comparator.comparing(Person::getFamily))
-                .collect(Collectors.toList());
+                .toList();
         potentialWorkersList.forEach(System.out::println);
-
     }
 }
